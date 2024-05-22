@@ -12,27 +12,41 @@ class Bank
 private:
 	class Account
 	{
-	public:
+	private:
 		int	_id;
-		int	_credit;
-		int	_value;
+		Account(const Account & other);
+		Account & operator=(const Account & other);
+	public:
+		Account(const int id);
+		bool	operator==(const Account& other);
+		const int &	getId() const;
 
-		Account(const int id, const int value);
-
-		const int &	getValue();
-		const int &	getId();
-		const int &	getCredit();
-
-		friend std::ostream& operator << (std::ostream& p_os, const Account& p_account);
+		// friend std::ostream& operator << (std::ostream& p_os, const Account& p_account);
 		// {
 		// 	p_os << "[" << p_account._id << "] - [" << p_account._value << "]";
 		// 	return (p_os);
 		// }
 	};
+	class Funds
+	{
+	private:
+		int	_credit;
+		int	_value;
+	public:
+		Funds(const int value);
+		const int &	getValue() const;
+		const int &	getCredit() const;
+
+		void setValur(const int& value);
+		void setCredit(const int& credit);		
+	};
 private:
 	int _liquidity;
 	// std::vector<Account *> clientAccounts;
-	std::map<int, Account *> _clientAccounts;
+	std::map<Account, Funds *> _clientAccounts;
+	
+	Bank(const Bank& other);
+	Bank & operator=(const Bank& other);
 public:
 	Bank();
 	~Bank();

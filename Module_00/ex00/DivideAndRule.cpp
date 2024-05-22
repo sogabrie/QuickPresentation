@@ -1,22 +1,32 @@
 #include "DivideAndRule.hpp"
 
-Bank::Account::Account(const int id, const int value) : _id(id), _value(value), _credit(0)
+Bank::Account::Account(const int id) : _id(id) {}
+
+Bank::Account::Account(const Account & other) 
+{}
+
+Bank::Account &Bank::Account::operator=(const Account &other)
 {
+	// TODO: вставьте здесь оператор return
 }
 
-const int & Bank::Account::getValue()
+bool Bank::Account::operator==(const Bank::Account &other)
 {
-	return this->_id;
+	return false;
 }
 
-const int & Bank::Account::getId()
+const int &Bank::Account::getId() const
 {
-	return this->_value;
+	// TODO: вставьте здесь оператор return
 }
 
-const int & Bank::Account::getCredit()
+Bank &Bank::operator=(const Bank &other)
 {
-	return this->_credit;
+	// TODO: вставьте здесь оператор return
+}
+
+Bank::Bank(const Bank &other)
+{
 }
 
 Bank::Bank()
@@ -65,4 +75,26 @@ void Bank::deleetAccaunt(const int id)
 std::ostream &operator<<(std::ostream &p_os, const Bank &p_bank)
 {
 	// TODO: вставьте здесь оператор return
+}
+
+Bank::Funds::Funds(const int value)
+{
+}
+
+const int &Bank::Funds::getValue() const
+{
+	// TODO: вставьте здесь оператор return
+}
+
+const int &Bank::Funds::getCredit() const
+{
+	// TODO: вставьте здесь оператор return
+}
+
+void Bank::Funds::setValur(const int &value)
+{
+}
+
+void Bank::Funds::setCredit(const int &credit)
+{
 }
