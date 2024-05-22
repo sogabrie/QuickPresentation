@@ -19,9 +19,9 @@ private:
 
 		Account(const int id, const int value);
 
-		const int	getValue();
-		const int	getId();
-		const int	getCredit();
+		const int &	getValue();
+		const int &	getId();
+		const int &	getCredit();
 
 		friend std::ostream& operator << (std::ostream& p_os, const Account& p_account);
 		// {
@@ -40,7 +40,7 @@ public:
 	int &	operator[](int id);
 
 	const int & getLiquidity();
-	const int & getClientAccounts();
+	// const int & getClientAccounts();
 
 	void	addAccaunt(const int id, int value);
 	void	addMoney(const int id);

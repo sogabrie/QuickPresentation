@@ -1,18 +1,22 @@
 #include "DivideAndRule.hpp"
 
-const int Bank::Account::getValue()
+Bank::Account::Account(const int id, const int value) : _id(id), _value(value), _credit(0)
 {
-	return 0;
 }
 
-const int Bank::Account::getId()
+const int & Bank::Account::getValue()
 {
-	return 0;
+	return this->_id;
 }
 
-const int Bank::Account::getCredit()
+const int & Bank::Account::getId()
 {
-	return 0;
+	return this->_value;
+}
+
+const int & Bank::Account::getCredit()
+{
+	return this->_credit;
 }
 
 Bank::Bank()
@@ -30,13 +34,13 @@ int &Bank::operator[](int id)
 
 const int &Bank::getLiquidity()
 {
-	// TODO: вставьте здесь оператор return
+	return this->_liquidity;
 }
 
-const int &Bank::getClientAccounts()
-{
-	// TODO: вставьте здесь оператор return
-}
+// const int &Bank::getClientAccounts()
+// {
+// 	// TODO: вставьте здесь оператор return
+// }
 
 void Bank::addAccaunt(const int id, int value)
 {
