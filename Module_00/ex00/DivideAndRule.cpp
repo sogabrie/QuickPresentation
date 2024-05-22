@@ -3,46 +3,64 @@
 Bank::Account::Account(const int id) : _id(id) {}
 
 Bank::Account::Account(const Account & other) 
-{}
+{
+	this->_id = other._id;
+}
 
 Bank::Account &Bank::Account::operator=(const Account &other)
 {
-	// TODO: вставьте здесь оператор return
+	this->_id = other._id;
+	return *this;
 }
 
 bool Bank::Account::operator==(const Bank::Account &other)
 {
-	return false;
+	return this->_id == other._id;
 }
 
 const int &Bank::Account::getId() const
 {
-	// TODO: вставьте здесь оператор return
+	return this->_id;
 }
 
 Bank &Bank::operator=(const Bank &other)
 {
-	// TODO: вставьте здесь оператор return
+	(void)other;
+	return *this;
 }
 
 Bank::Bank(const Bank &other)
 {
+	(void)other;
 }
 
-Bank::Bank()
+Bank::Bank() : _liquidity(0)
+{
+}
+
+Bank::Bank(const int &liquidity) : _liquidity(liquidity)
 {
 }
 
 Bank::~Bank()
 {
+	for ( std::map<Account, Funds *>::iterator it = this->_clientAccounts.begin(); it != this->_clientAccounts.end(); ++it)
+	{
+		delete it->second;
+	}
 }
 
-int &Bank::operator[](int id)
+Bank::Account &const Bank::operator[](int id)
 {
-	// TODO: вставьте здесь оператор return
+	// return nullptr;
 }
 
-const int &Bank::getLiquidity()
+Bank::Account & Bank::operator[](int id)
+{
+	// return nullptr;
+}
+
+const int &Bank::getLiquidity() const
 {
 	return this->_liquidity;
 }
@@ -52,8 +70,18 @@ const int &Bank::getLiquidity()
 // 	// TODO: вставьте здесь оператор return
 // }
 
-void Bank::addAccaunt(const int id, int value)
+void Bank::addAccount(const int id, int value)
 {
+	if (this->_clientAccounts.find(Bank::Account(id)) == this->_clientAccounts.end())
+	{
+		Bank::Funds * val = new Funds(value);
+		if (!val)
+			throw std::length_error("Erro Mallocc");
+		this->_clientAccounts[Bank::Account(id)] = val;
+	}else
+	{
+		throw std::length_error("Tenc id arden ka");
+	}
 }
 
 void Bank::addMoney(const int id)

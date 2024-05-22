@@ -9,7 +9,7 @@
 
 class Bank
 {
-private:
+public:
 	class Account
 	{
 	private:
@@ -27,6 +27,7 @@ private:
 		// 	return (p_os);
 		// }
 	};
+private:
 	class Funds
 	{
 	private:
@@ -44,24 +45,26 @@ private:
 	int _liquidity;
 	// std::vector<Account *> clientAccounts;
 	std::map<Account, Funds *> _clientAccounts;
-	
+
 	Bank(const Bank& other);
-	Bank & operator=(const Bank& other);
+	Bank &			operator=(const Bank& other);
 public:
 	Bank();
+	Bank(const int& liquidity);
 	~Bank();
 
-	int &	operator[](int id);
+	Account & const	operator[](int id);
+	Account &		operator[](int id);
 
-	const int & getLiquidity();
+	const int & 	getLiquidity() const;
 	// const int & getClientAccounts();
 
-	void	addAccaunt(const int id, int value);
-	void	addMoney(const int id);
-	void	getMoney(const int id, const int count);
+	void			addAccount(const int id, int value);
+	void			addMoney(const int id);
+	void			getMoney(const int id, const int count);
 
-	void	addCredit(const int id, const int count);
-	void	deleetAccaunt(const int id);
+	void			addCredit(const int id, const int count);
+	void			deleetAccaunt(const int id);
 
 
 
