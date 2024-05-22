@@ -74,25 +74,39 @@ void Bank::addAccount(const int id, int value)
 {
 	if (this->_clientAccounts.find(Bank::Account(id)) == this->_clientAccounts.end())
 	{
+		int tok = value / 100 * 5;
+		value -= tok;
 		Bank::Funds * val = new Funds(value);
 		if (!val)
 			throw std::length_error("Erro Mallocc");
 		this->_clientAccounts[Bank::Account(id)] = val;
+		this->_liquidity += tok;
 	}else
 	{
 		throw std::length_error("Tenc id arden ka");
 	}
 }
 
-void Bank::addMoney(const int id)
+void Bank::addMoney(const int id, int count)
+{
+	if (this->_clientAccounts.find(Bank::Account(id)) != this->_clientAccounts.end())
+	{
+		int tok = count / 100 * 5;
+		count -= tok;
+		Bank::Funds * fn = this->_clientAccounts[Bank::Account(id)];
+		fn->setValur(fn->getValue() + count);
+		this->_liquidity += tok;
+	}else
+	{
+		throw std::length_error("Tenc id ov akaunt chka");
+	}
+}
+
+int Bank::getMoney(const int id, int count)
 {
 }
 
-void Bank::getMoney(const int id, const int count)
-{
-}
-
-void Bank::addCredit(const int id, const int count)
+void Bank::addCredit(const int id, int count)
 {
 }
 
@@ -105,24 +119,26 @@ std::ostream &operator<<(std::ostream &p_os, const Bank &p_bank)
 	// TODO: вставьте здесь оператор return
 }
 
-Bank::Funds::Funds(const int value)
+Bank::Funds::Funds(const int value) : _value(value), _credit(0)
 {
 }
 
 const int &Bank::Funds::getValue() const
 {
-	// TODO: вставьте здесь оператор return
+	return this->_value;
 }
 
 const int &Bank::Funds::getCredit() const
 {
-	// TODO: вставьте здесь оператор return
+	return this->_credit;
 }
 
 void Bank::Funds::setValur(const int &value)
 {
+	this->_value = value;
 }
 
 void Bank::Funds::setCredit(const int &credit)
 {
+	this->_credit = credit;
 }

@@ -60,10 +60,10 @@ public:
 	// const int & getClientAccounts();
 
 	void			addAccount(const int id, int value);
-	void			addMoney(const int id);
-	void			getMoney(const int id, const int count);
+	void			addMoney(const int id, int value);
+	int				getMoney(const int id, int count);
 
-	void			addCredit(const int id, const int count);
+	void			addCredit(const int id, int count);
 	void			deleetAccaunt(const int id);
 
 
