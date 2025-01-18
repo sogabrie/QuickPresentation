@@ -51,14 +51,14 @@ private:
 	int							_liquidity;
 	std::map<Account, Cash *>	_clientAccounts;
 
-	Bank(const Bank& other);
-	Bank &			operator=(const Bank& other);
+	// Bank(const Bank& other);
+	// Bank &			operator=(const Bank& other);
 public:
 	// Bank();
 	Bank(const int& liquidity);
 	~Bank();
 
-	Account & const	operator[](int id);
+	Account & const	operator[](int id) const;
 	Account &		operator[](int id);
 
 	const int & 	getLiquidity() const;
