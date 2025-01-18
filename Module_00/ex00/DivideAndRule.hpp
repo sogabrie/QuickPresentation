@@ -14,42 +14,47 @@ public:
 	{
 	private:
 		int	_id;
-		Account(const Account & other);
-		Account & operator=(const Account & other);
 	public:
-		Account(const int id);
+		Account(int id);
+		~Account();
+		bool	operator==(const int id);
+		bool	operator==(const int id) const;
 		bool	operator==(const Account& other);
 		const int &	getId() const;
 
-		// friend std::ostream& operator << (std::ostream& p_os, const Account& p_account);
+		// friend std::ostream& operator << (std::ostream& p_os, const Account& p_account)
 		// {
-		// 	p_os << "[" << p_account._id << "] - [" << p_account._value << "]";
+		// 	p_os << "[" << p_account.id << "] - [" << p_account.value << "]";
 		// 	return (p_os);
 		// }
+
 	};
 private:
-	class Funds
+	class Cash
 	{
 	private:
 		int	_credit;
 		int	_value;
 	public:
-		Funds(const int value);
+		Cash();
+		Cash(const int value);
+		~Cash();
 		const int &	getValue() const;
 		const int &	getCredit() const;
 
-		void setValur(const int& value);
-		void setCredit(const int& credit);		
+		void editValur(const int& value);
+		void editCredit(const int& credit);		
 	};
 private:
-	int _liquidity;
-	// std::vector<Account *> clientAccounts;
-	std::map<Account, Funds *> _clientAccounts;
+	// std::string					_name_bank;
+	static int					_global_id; 
+	int							_liquidity;
+	std::map<Account, Cash *>	_clientAccounts;
 
 	Bank(const Bank& other);
 	Bank &			operator=(const Bank& other);
 public:
-	Bank();
+	// Bank();
 	Bank(const int& liquidity);
 	~Bank();
 
@@ -59,16 +64,24 @@ public:
 	const int & 	getLiquidity() const;
 	// const int & getClientAccounts();
 
-	void			addAccount(const int id, int value);
-	void			addMoney(const int id, int value);
-	int				getMoney(const int id, int count);
-
-	void			addCredit(const int id, int count);
+	//Akaunti gorter
+	void			addAccount(const int id, int cash);
+	void			addMoneyClient(const int id, int cash);
+	void			getMoneyClient(const int id, int cash);
 	void			deleetAccaunt(const int id);
+	void			addCredit(const int id, int cash);
+
+	std::string		getInfoClient(const int id);
+	std::string		getInfoAllcli();
+
+	//banki pox avelacnel
+	void			addMoney(const int id, int chsh);
+	void			getMoney(const int id, int cash);
 
 
 
-	friend std::ostream& operator << (std::ostream& p_os, const Bank& p_bank);
+
+	// friend std::ostream& operator << (std::ostream& p_os, const Bank& p_bank)
 	// {
 	// 	p_os << "Bank informations : " << std::endl;
 	// 	p_os << "Liquidity : " << p_bank.liquidity << std::endl;
@@ -76,6 +89,8 @@ public:
     //     p_os << *clientAccount << std::endl;
 	// 	return (p_os);
 	// }
+
+
 };
 
 #endif
