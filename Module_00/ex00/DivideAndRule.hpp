@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <sstream>
 #include <map>
 
 
@@ -42,41 +43,39 @@ private:
 		const int &	getValue() const;
 		const int &	getCredit() const;
 
-		void editValur(const int& value);
-		void editCredit(const int& credit);		
+		void editValur(const int value);
+		void editCredit(const int credit);		
 	};
 private:
 	// std::string					_name_bank;
 	static int					_global_id; 
 	int							_liquidity;
-	std::map<Account, Cash *>	_clientAccounts;
+	std::map<Account, Cash>		_clientAccounts;
 
 	// Bank(const Bank& other);
 	// Bank &			operator=(const Bank& other);
 public:
 	// Bank();
-	Bank(const int& liquidity);
+	Bank(const int liquidity);
 	~Bank();
 
-	Account & const	operator[](int id) const;
-	Account &		operator[](int id);
+	const Account & const	operator[](int id) const;
+	const Account &			operator[](int id);
 
-	const int & 	getLiquidity() const;
+	int						getLiquidity() const;
+	void 					editLiquidity(int value);
 	// const int & getClientAccounts();
 
 	//Akaunti gorter
-	void			addAccount(const int id, int cash);
-	void			addMoneyClient(const int id, int cash);
-	void			getMoneyClient(const int id, int cash);
-	void			deleetAccaunt(const int id);
-	void			addCredit(const int id, int cash);
+	void					addAccount(const int id, int cash);
+	void					addMoneyClient(const int id, int cash);
+	void					getMoneyClient(const int id, int cash);
+	void					deleetAccaunt(const int id);
+	void					addCredit(const int id, int cash);
 
-	std::string		getInfoClient(const int id);
-	std::string		getInfoAllcli();
+	std::string				getInfoClient(const int id);
+	std::string				getInfoAllcli();
 
-	//banki pox avelacnel
-	void			addMoney(const int id, int chsh);
-	void			getMoney(const int id, int cash);
 
 
 

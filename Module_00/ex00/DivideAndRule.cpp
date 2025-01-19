@@ -2,7 +2,7 @@
 
 // throw std::runtime_error(std::string());
 
-Bank::Account::Account(int id)
+Bank::Account::Account(int id) : _id(id)
 {
 }
 
@@ -12,29 +12,29 @@ Bank::Account::~Account()
 
 bool Bank::Account::operator==(const int id)
 {
-    return false;
+    return this->_id == id;
 }
 
 bool Bank::Account::operator==(const int id) const
 {
-    return false;
+    return this->_id == id;
 }
 
 bool Bank::Account::operator==(const Account &other)
 {
-    return false;
+    return this->_id == other._id;
 }
 
 const int &Bank::Account::getId() const
 {
-    // TODO: вставьте здесь оператор return
+    return this->_id;
 }
 
-Bank::Cash::Cash()
+Bank::Cash::Cash() : _credit(0),_value(0)
 {
 }
 
-Bank::Cash::Cash(const int value)
+Bank::Cash::Cash(const int value) : _credit(0), _value(value)
 {
 }
 
@@ -44,23 +44,25 @@ Bank::Cash::~Cash()
 
 const int &Bank::Cash::getValue() const
 {
-    // TODO: вставьте здесь оператор return
+    return this->_value;
 }
 
 const int &Bank::Cash::getCredit() const
 {
-    // TODO: вставьте здесь оператор return
+    return this->_credit;
 }
 
-void Bank::Cash::editValur(const int &value)
+void Bank::Cash::editValur(const int value)
 {
+    this->_value += value;
 }
 
-void Bank::Cash::editCredit(const int &credit)
+void Bank::Cash::editCredit(const int credit)
 {
+    this->_credit += credit;
 }
 
-Bank::Bank(const int &liquidity)
+Bank::Bank(const int liquidity) : _liquidity(liquidity)
 {
 }
 
@@ -68,19 +70,40 @@ Bank::~Bank()
 {
 }
 
-Bank::Account &const Bank::operator[](int id) const
+const Bank::Account &const Bank::operator[](int id) const
 {
-
+    std::stringstream ss;
+    ss << "Account /'" << id << "/' was not founded";
+    std::string errmsg = ss.str();
+    std::map<Bank::Account, Bank::Cash>::const_iterator it = this->_clientAccounts.find(id);
+    if ( it == this->_clientAccounts.end())
+    {
+        throw std::out_of_range(errmsg);
+    }
+    return it->first;
 }
 
-Bank::Account &Bank::operator[](int id)
+const Bank::Account &Bank::operator[](int id)
 {
-
+    std::stringstream ss;
+    ss << "Account /'" << id << "/' was not founded";
+    std::string errmsg = ss.str();
+    std::map<Bank::Account, Bank::Cash>::iterator it = this->_clientAccounts.find(id);
+    if ( it == this->_clientAccounts.end())
+    {
+        throw std::out_of_range(errmsg);
+    }
+    return it->first;
 }
 
-const int &Bank::getLiquidity() const
+int Bank::getLiquidity() const
 {
-    // TODO: вставьте здесь оператор return
+    return this->_liquidity;
+}
+
+void Bank::editLiquidity(int value)
+{
+    this->_liquidity += value;
 }
 
 void Bank::addAccount(const int id, int cash)
@@ -111,12 +134,4 @@ std::string Bank::getInfoClient(const int id)
 std::string Bank::getInfoAllcli()
 {
     return std::string();
-}
-
-void Bank::addMoney(const int id, int chsh)
-{
-}
-
-void Bank::getMoney(const int id, int cash)
-{
 }
