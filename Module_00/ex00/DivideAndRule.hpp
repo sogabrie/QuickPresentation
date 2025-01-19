@@ -16,11 +16,18 @@ public:
 	private:
 		int	_id;
 	public:
+		Account();
 		Account(int id);
 		~Account();
 		bool	operator==(const int id);
 		bool	operator==(const int id) const;
 		bool	operator==(const Account& other);
+
+		bool	operator<(const int id);
+		bool	operator<(const int id) const;
+		bool	operator<(const Account& other) const;
+		// bool	operator<(const Account other);
+
 		const int &	getId() const;
 
 		// friend std::ostream& operator << (std::ostream& p_os, const Account& p_account)
@@ -59,7 +66,7 @@ public:
 	Bank(const int liquidity);
 	~Bank();
 
-	const Account & const	operator[](int id) const;
+	// const Account & const	operator[](int id) const;
 	const Account &			operator[](int id);
 
 	int						getLiquidity() const;
@@ -67,11 +74,11 @@ public:
 	// const int & getClientAccounts();
 
 	//Akaunti gorter
-	void					addAccount(const int id, int cash);
-	void					addMoneyClient(const int id, int cash);
-	void					getMoneyClient(const int id, int cash);
+	void					addAccount(int cash);
+	void					editMoneyClient(const int id, int cash);
 	void					deleetAccaunt(const int id);
 	void					addCredit(const int id, int cash);
+	void					repaymentCredit(const int id, int cash);
 
 	std::string				getInfoClient(const int id);
 	std::string				getInfoAllcli();

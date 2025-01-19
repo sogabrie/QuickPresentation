@@ -2,6 +2,40 @@
 
 int main()
 {
+	try
+	{
+		Bank bank(1000);
+
+		std::cout << bank.getInfoAllcli();
+
+		bank.addAccount(200);
+		bank.addAccount(300);
+
+		std::cout << bank.getInfoAllcli();
+
+		bank.addCredit(0,100);
+
+		std::cout << bank.getInfoAllcli();
+
+		bank.repaymentCredit(0,50);
+
+		std::cout << bank.getInfoAllcli();
+
+		bank.repaymentCredit(0,55);
+
+		std::cout << bank.getInfoAllcli();
+
+		bank.deleetAccaunt(0);
+
+		std::cout << bank.getInfoAllcli();
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
+
+
 	// Account accountA = Account();
 	// accountA.id = 0;
 	// accountA.value = 100;
