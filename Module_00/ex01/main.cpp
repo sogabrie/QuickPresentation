@@ -8,7 +8,7 @@ int main(void)
     Vector2 v4(3.0,1.0);
     Vector2 v5(1.0,5.0);
 
-    Graph gr(Vector2(42.0,15.0));
+    Graph gr(Vector2(42.0,10.0));
 
     gr.addPoint(v1);
     gr.addPoint(v2);
@@ -18,7 +18,7 @@ int main(void)
 
     gr.print();
 
-    
+
 
     return(0);
 }

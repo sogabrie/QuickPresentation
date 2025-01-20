@@ -44,15 +44,20 @@ void Graph::print()
         std::cout << i;
         for (float j = 0 ; j <= this->_size.x() ; ++j)
         {
-            std::cout << ".";
+            if (std::find(this->_points.begin(),this->_points.end(), Vector2(j,i)) == this->_points.end())
+            {
+                std::cout << ".";
+            }else{
+                std::cout << "x";
+            }
         }
         std::cout << std::endl;
     }
-    for (int i = 0; i < this->getRaz(this->_size.y()); i++)
+    for (int i = 0; i < this->getRaz(this->_size.x()); i++)
     {
         int j = 0;
-        std::cout << "<&  ";
-        for (; j < i * 10; ++j)
+        std::cout << "<&   ";
+        for (; j < int(pow(10,i)) && i != 0; ++j)
         {
             std::cout << " ";
         }
@@ -61,11 +66,7 @@ void Graph::print()
             int y = 0;
             y = j / int(pow(10,i)) % 10;
             std::cout << y;
-            // std::cout << "_";
         }
         std::cout << std::endl;
     }
-    
-
-    std::cout << std::endl;
 }
