@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Vector2.hpp"
 #include <vector>
+#include <cmath>
 
 class Graph
 {

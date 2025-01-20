@@ -50,10 +50,18 @@ void Graph::print()
     }
     for (int i = 0; i < this->getRaz(this->_size.y()); i++)
     {
+        int j = 0;
         std::cout << "<&  ";
-        for (float j = 0 ; j <= this->_size.x() ; ++j)
+        for (; j < i * 10; ++j)
         {
-            std::cout << "_";
+            std::cout << " ";
+        }
+        for (; j <= int(this->_size.x()) ; ++j)
+        {
+            int y = 0;
+            y = j / int(pow(10,i)) % 10;
+            std::cout << y;
+            // std::cout << "_";
         }
         std::cout << std::endl;
     }
