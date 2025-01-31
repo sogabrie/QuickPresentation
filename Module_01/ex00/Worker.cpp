@@ -4,10 +4,12 @@
 
 Worker::Worker(std::string name, const Position &coord) : _name(name), _coord(coord)
 {
+    std::cout << "Canstruktor Worker\n";
 }
 
 Worker::~Worker()
 {
+    std::cout << "Destruktor Worker\n";
 }
 
 bool Worker::addTool(Tool *tool)

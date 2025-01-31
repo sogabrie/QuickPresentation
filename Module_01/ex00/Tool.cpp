@@ -2,10 +2,12 @@
 
 Tool::Tool(std::string type, int number) : _type(type), _numberOfUses(number)
 {
+    std::cout << "Canstructor Tool\n";
 }
 
 Tool::~Tool()
 {
+    std::cout << "Destruktor Tool\n";
 }
 
 const std::string &Tool::getType() const

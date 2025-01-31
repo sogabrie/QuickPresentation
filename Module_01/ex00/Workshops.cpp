@@ -2,10 +2,12 @@
 
 Workshops::Workshops(const std::string &name) : _name(name)
 {
+    std::cout << "Canstructor Workershops\n";
 }
 
 Workshops::~Workshops()
 {
+    std::cout << "Destruktor Workshops\n";
 }
 
 bool Workshops::hasTool(Worker *wor)
@@ -42,5 +44,14 @@ bool Workshops::remuvWorker(Worker *wor)
 
 void Workshops::executeWorkDay()
 {
+    for (std::vector<Worker *>::iterator i = this->_workers.begin(); i != this->_workers.end(); ++i)
+    {
+        if (this->hasTool(*i))
+        {
+            (*i)->work(this);
+        }else{
+            this->remuvWorker(*i);
+        }
+    }
     
 }
