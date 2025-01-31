@@ -4,7 +4,9 @@ CC			= c++
 FLAGS		= -Wall -Wextra -Werror -std=c++11
 RM			= rm -rf
 
-FILES		= main Position Statistic Worker Shovel Tool Hammer
+FILES		=	main Position Statistic Worker Shovel \
+				Tool Hammer Workshops Shovelshop Hammershop
+				
 SRC			= $(FILES:=.cpp)
 OBJ			= $(FILES:=.o)
 HEADER		= $(wildcard *.hpp)
