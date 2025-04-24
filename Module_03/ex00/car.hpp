@@ -32,13 +32,13 @@ public:
     void    start()
     {
         _eng = true;
-        std::cout << "Engine start\n"; 
+        // std::cout << "Engine start\n"; 
     }
 
     void stop()
     {
         _eng = false;
-        std::cout << "Engine stop\n";
+        // std::cout << "Engine stop\n";
     }
 
     bool    getstatus()
@@ -65,7 +65,7 @@ public:
     {
         if (!(this->_engien))
         {
-            std::cout << "Engine stopet\n";
+            // std::cout << "Engine stopet\n";
             return ;
         }
         if (speed + this->_speed <= SPEEDMAX && speed + this->_speed >= 0) 
@@ -81,7 +81,7 @@ public:
                 this->_speed = 0;
             }
         }
-        std::cout << "Spedd = " << this->_speed << std::endl;
+        // std::cout << "Spedd = " << this->_speed << std::endl;
     }
 
     int getSpeed()
@@ -136,6 +136,8 @@ public:
         case R:
             this->_gear = G1;
             break;
+        case G5:
+            break;
         }
     }
 
@@ -160,6 +162,8 @@ public:
             break;
         case R:
             this->_gear = N;
+            break;
+        case N:
             break;
         }
     }
@@ -204,7 +208,12 @@ public:
         {
             this->_angle = angle;
         }
-        std::cout << "Angle = " << this->_angle << std::endl;
+        // std::cout << "Angle = " << this->_angle << std::endl;
+    }
+
+    int getAngle()
+    {
+        return this->_angle;
     }
 private:
     int _angle;
@@ -213,6 +222,13 @@ private:
 class Brakes
 {
 public:
+
+    Brakes (Engine * engine, Speed * speed, Transmission * transmission)
+    {
+        this->_engine = engine;
+        this->_spead = speed;
+        this->_transmission = transmission;
+    }
 
     void    apply_force_on_brakes(int force)
     {
@@ -234,7 +250,97 @@ private:
 
 class Car
 {
-    
+public:
+    Car() : _engin(), _speed(&_engin), _transmission(), _steeringwheel(), _brakes(&_engin, &_speed, &_transmission)
+    {
+    }
+
+    void    start()
+    {
+        this->_engin.start();
+        std::cout << "funqcion start" << std::endl;
+        std::cout << "\tsped = " << this->_speed.getSpeed() << " Steering Wheel = " << \
+            this->_steeringwheel.getAngle() << std::endl;
+    }
+
+    void    stop()
+    {
+        this->_engin.stop();
+        std::cout << "funqcion stop" << std::endl;
+        std::cout << "\tsped = " << this->_speed.getSpeed() << " Steering Wheel = " << \
+            this->_steeringwheel.getAngle() << std::endl;
+    }
+
+    void    accelerate(int speed)
+    {
+        this->_speed.accelerate(speed);
+        std::cout << "funqcion accelerate" << std::endl;
+        std::cout << "\tsped = " << this->_speed.getSpeed() << " Steering Wheel = " << \
+            this->_steeringwheel.getAngle() << std::endl;
+    }
+
+    void    shift_gears_up()
+    {
+        this->_transmission.shift_gears_up();
+        std::cout << "funqcion shift_gears_up" << std::endl;
+        std::cout << "\tsped = " << this->_speed.getSpeed() << " Steering Wheel = " << \
+            this->_steeringwheel.getAngle() << std::endl;
+    }
+
+    void    shift_gears_down()
+    {
+        this->_transmission.shift_gears_down();
+        std::cout << "funqcion shift_gears_down" << std::endl;
+        std::cout << "\tsped = " << this->_speed.getSpeed() << " Steering Wheel = " << \
+            this->_steeringwheel.getAngle() << std::endl;
+    }
+
+    void    reverse()
+    {
+        this->_transmission.reverse();
+        std::cout << "funqcion reverse" << std::endl;
+        std::cout << "\tsped = " << this->_speed.getSpeed() << " Steering Wheel = " << \
+            this->_steeringwheel.getAngle() << std::endl;
+    }
+
+    void    turn_wheel(int angle)
+    {
+        this->_steeringwheel.turn_wheel(angle);
+        std::cout << "funqcion turn_wheel" << std::endl;
+        std::cout << "\tsped = " << this->_speed.getSpeed() << " Steering Wheel = " << \
+            this->_steeringwheel.getAngle() << std::endl;
+    }
+
+    void    straighten_wheels()
+    {
+        this->_steeringwheel.straighten_wheels();
+        std::cout << "funqcion straighten_wheels" << std::endl;
+        std::cout << "\tsped = " << this->_speed.getSpeed() << " Steering Wheel = " << \
+            this->_steeringwheel.getAngle() << std::endl;
+    }
+
+    void    apply_force_on_brakes(int force)
+    {
+        this->_brakes.apply_force_on_brakes(force);
+        std::cout << "funqcion apply_force_on_brakes" << std::endl;
+        std::cout << "\tsped = " << this->_speed.getSpeed() << " Steering Wheel = " << \
+            this->_steeringwheel.getAngle() << std::endl;
+    }
+
+    void    apply_emergency_brakes()
+    {
+        this->_brakes.apply_emergency_brakes();
+        std::cout << "funqcion apply_emergency_brakes" << std::endl;
+        std::cout << "\tsped = " << this->_speed.getSpeed() << " Steering Wheel = " << \
+            this->_steeringwheel.getAngle() << std::endl;
+    }
+
+private:
+    Engine          _engin;
+    Speed           _speed;
+    Transmission    _transmission;
+    SteeringWheel   _steeringwheel;
+    Brakes          _brakes;
 };
 
 #endif
