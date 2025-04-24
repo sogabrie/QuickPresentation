@@ -213,7 +213,28 @@ private:
 class Brakes
 {
 public:
+
+    void    apply_force_on_brakes(int force)
+    {
+        this->_spead->accelerate(-force);
+    }
+
+    void apply_emergency_brakes()
+    {
+        this->_engine->stop();
+        this->_spead->accelerate(-SPEEDMAX);
+        this->_transmission->shift_gears_up_n();
+    }
+
 private:
+    Engine *        _engine;
+    Speed *         _spead;
+    Transmission *  _transmission;
+};
+
+class Car
+{
+    
 };
 
 #endif
