@@ -1,6 +1,6 @@
 NAME		= ex00
 	
-CC			= c++
+CC			= /usr/bin/c++
 FLAGS		= -Wall -Wextra -Werror -std=c++98
 RM			= rm -rf
 
