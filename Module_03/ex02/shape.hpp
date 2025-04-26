@@ -3,9 +3,19 @@
 
 class shape
 {
-private:
-
 public:
+    shape(){}
+
+    // shape(const shape & other)
+    // {
+    //     (void)other;
+    // }
+
+    virtual double area ()
+    {
+        return 0.0;
+    }
+private:
 
 };
 
