@@ -2,6 +2,7 @@
 #define _COMMAND_CPP_
 
 #include <string>
+#include <map>
 
 class  Articles
 {
@@ -30,13 +31,14 @@ private:
 class command
 {
 public:
+    command ()
 
 private:
 
-    unsigned int    _id;
-    std::string     _date;
-    std::string     _client;
-    Articles        _articles;
+    unsigned int                _id;
+    std::string                 _date;
+    std::string                 _client;
+    std::map<Articles *,int>    _articles;
 };
 
 #endif
