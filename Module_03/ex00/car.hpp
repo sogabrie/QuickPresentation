@@ -7,7 +7,7 @@
 #define MAXENGLE 45
 #define SPEEDMAX 360
 
-enum t_gear
+enum Gear
 {
     N,
     G1,
@@ -18,8 +18,6 @@ enum t_gear
     R
 
 };
-
-#define Gear enum t_gear
 
 class Engine{
 public:
