@@ -6,7 +6,7 @@
 class ILogger
 {
 public:
-    virtual ~ILogger() = 0;
+    virtual ~ILogger() {};
     virtual void write(const std::string & mess) = 0;
 
 };

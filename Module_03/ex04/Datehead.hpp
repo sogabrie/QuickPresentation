@@ -1,11 +1,20 @@
 #ifndef _DATEHEAD_HPP_
 #define _DATEHEAD_HPP_
 
-class Datehead
+#include "IHeader.hpp"
+#include <ctime>
+
+class Datehead : public IHeader
 {
 public:
-    Datehead(/* args */);
-    ~Datehead();
+    Datehead(){};
+    const std::string head()
+    {
+        std::time_t now = std::time(NULL);
+        char buffer[100];
+        std::strftime(buffer, sizeof(buffer), "%A %c", std::localtime(&now));
+        return std::string(buffer);
+    }
 private:
 };
 

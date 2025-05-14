@@ -72,6 +72,9 @@
 		"random": "cpp",
 		"numbers": "cpp",
 		"ranges": "cpp",
-		"span": "cpp"
+		"span": "cpp",
+		"list": "cpp",
+		"set": "cpp",
+		"fstream": "cpp"
 	}
 }
