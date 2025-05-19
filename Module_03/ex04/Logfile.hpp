@@ -11,7 +11,7 @@
 class Logfile : public ILogger
 {
 public:
-    Logfile(const std::string & name, IHeader * head) : _head(head) 
+    Logfile(const std::string & name, IHeader * head = NULL) : _head(head) 
     {
         this->_file.open(name.c_str(), std::ios::app);
     }
@@ -21,11 +21,11 @@ public:
     };
     void write(const std::string & mess)
     {
-        if(this->_head)
+        if(!this->_head)
         {
             this->_file << mess << std::endl;
         }else{
-            this->_file << this->_head->head() << mess << std::endl;
+            this->_file << this->_head->head() << " " << mess << std::endl;
         }
     }
 private:

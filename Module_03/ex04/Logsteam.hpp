@@ -7,20 +7,20 @@
 #include "IHeader.hpp"
 #include "ILogger.hpp"
 
-class Logsteam
+class Logsteam :public ILogger
 {
 public:
-    Logsteam(std::ostream & ss, IHeader * head) : _ss(ss), _head(head)
+    Logsteam(std::ostream & ss, IHeader * head = NULL) : _ss(ss), _head(head)
     {
 
     }
     void write(const std::string & mess)
     {
-        if(this->_head)
+        if(!this->_head)
         {
             this->_ss << mess << std::endl;
         }else{
-            this->_ss << this->_head->head() << mess << std::endl;
+            this->_ss << this->_head->head() << " " << mess << std::endl;
         }
     }
 private:

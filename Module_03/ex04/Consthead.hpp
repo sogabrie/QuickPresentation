@@ -3,7 +3,7 @@
 
 #include "IHeader.hpp"
 
-class Consthead
+class Consthead : public IHeader
 {
 public:
     Consthead(const std::string &mess) : _mess(mess)
