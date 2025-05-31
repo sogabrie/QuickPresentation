@@ -3,6 +3,7 @@
 
 #include "Person.hpp"
 
+
 class Staff : public Person
 {
 private:
